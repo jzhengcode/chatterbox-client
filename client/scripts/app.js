@@ -22,6 +22,9 @@ var App = {
       // examine the response from the server request:
       console.log(data);
 
+      // Chelsea notes: wrote below line to store retrieved data in messages
+      Messages.storage = Messages.storage.concat(data.results);
+
       callback();
     });
   },
