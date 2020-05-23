@@ -12,9 +12,10 @@ var App = {
     App.fetch(App.stopSpinner);
 
     //Initialize views
-    setTimeout(RoomsView.initialize, 2000);
+    setTimeout(RoomsView.initialize, 1000);
+    setTimeout(MessagesView.initialize, 1000);
     FormView.initialize();
-    MessagesView.initialize();
+
 
 
 

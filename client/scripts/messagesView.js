@@ -2,31 +2,50 @@ var MessagesView = {
 
   $chats: $('#chats'),
   $showMessages: $('#show-messages'),
+  $room: $('#room-dropdown'),
 
   initialize: function() {
-    //Chelsea notes: part of initializing message view will be setting up an event listener for message submissions
+    MessagesView.render();
 
-    //Also set up event listener, or timeout function, for rendering new messages on a schedule or on a button click
-    MessagesView.$showMessages.on('click', MessagesView.render);
+    MessagesView.$showMessages.on('click', function() {
+      App.startSpinner();
+      App.fetch(App.stopSpinner);
+      setTimeout(MessagesView.render, 1000);
+    });
 
-    //also want to render some number of messages retrieved from server - like last 100 messages or something
   },
 
   render: function() {
     //use messageView.js to render each message
     //then render all message blocks on page in #chats element
+
+    //if value of room dropdown is "All Rooms"
+        //assign message set to all of Messages.storage
+      //else
+        //_.filter Messages.storage based on $room selector val()
+    let messages;
+
+    if (MessagesView.$room.val() === 'All Rooms'){
+      messages = Messages.storage;
+    } else {
+      messages = Messages.storage.filter(messageNode => messageNode.roomname === MessagesView.$room.val());
+    }
     MessagesView.$chats.empty();
-    //for each message in messages.js storage...
-    for (let message of Messages.storage) {
-      //call MessageView.render template on the message
-      //if message doesn't have username, roomname, text, and createdAt properties, continue to next loop
+    for (let message of messages) {
+
       if (!message.hasOwnProperty('username') || !message.hasOwnProperty('roomname') || !message.hasOwnProperty('text') || !message.hasOwnProperty('createdAt')) {
         continue;
       }
+
       let rendered = MessageView.render(message);
-      //append the created node to #chats
       MessagesView.$chats.append(rendered);
     }
   }
+  //render friends messages differently - i.e. if message.username is contained in friends storage
+    //inside for-loop above, if message.username is _.contained in Friends.storage
+      //assign rendered to MessageView.renderFriend() method instead of MessageView.render()
+
+  //filter messages based on room name selected in dropdown before looping through and rendering
+    //before starting for-loop above,
 
 };

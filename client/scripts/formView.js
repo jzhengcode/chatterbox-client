@@ -30,7 +30,6 @@ var FormView = {
       setTimeout(MessagesView.render, 3000);
       FormView.$input.val('');
     }
-    console.log('click!');
   },
 
   setStatus: function(active) {
