@@ -7,13 +7,16 @@ var App = {
   initialize: function() {
     App.username = window.location.search.substr(10);
 
-    FormView.initialize();
-    RoomsView.initialize();
-    MessagesView.initialize();
-
     // Fetch initial batch of messages
     App.startSpinner();
     App.fetch(App.stopSpinner);
+
+    //Initialize views
+    setTimeout(RoomsView.initialize, 2000);
+    FormView.initialize();
+    MessagesView.initialize();
+
+
 
   },
 
@@ -22,8 +25,8 @@ var App = {
       // examine the response from the server request:
       console.log(data);
 
-      // Chelsea notes: wrote below line to store retrieved data in messages
       Messages.storage = data.results;
+
 
       callback();
     });

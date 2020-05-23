@@ -9,10 +9,14 @@ var MessageView = {
         <div class="username"><%-username%></div>
         <div class="message-body"><%-text%></div>
         <div class="timestamp"><%-createdAt%></div>
-      </div>
+        <div class="room-name"><%-roomname%></div>
     `)
 
 };
+
+//<div class="username"><%-username%></div>
+//<div class="message-body"><%-text%></div>
+//<div class="timestamp"><%-createdAt%></div>
 
 
 
