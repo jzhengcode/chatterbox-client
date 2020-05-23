@@ -21,7 +21,7 @@ var MessagesView = {
       //call MessageView.render template on the message
       let rendered = MessageView.render(message);
       //append the created node to #chats
-      $('#chats').append(rendered);
+      $('#chats').prepend(rendered);
     }
   }
 
