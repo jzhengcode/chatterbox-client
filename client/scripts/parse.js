@@ -4,6 +4,7 @@ var Parse = {
 
   create: function(message, successCB, errorCB = null) {
     // todo: save a message to the server
+    // Janet notes: should pull info from messages/rooms/friends?
   },
 
   readAll: function(successCB, errorCB = null) {
