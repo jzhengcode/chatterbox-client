@@ -15,13 +15,13 @@ var MessagesView = {
   render: function() {
     //use messageView.js to render each message
     //then render all message blocks on page in #chats element
-
+    MessagesView.$chats.empty();
     //for each message in messages.js storage...
     for (let message of Messages.storage) {
       //call MessageView.render template on the message
       let rendered = MessageView.render(message);
       //append the created node to #chats
-      $('#chats').prepend(rendered);
+      MessagesView.$chats.append(rendered);
     }
   }
 

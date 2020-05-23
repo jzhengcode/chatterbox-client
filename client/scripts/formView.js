@@ -2,6 +2,7 @@ var FormView = {
 
   $form: $('form'),
   $input: $('#message'),
+  $room: $('#room-dropdown'),
 
   initialize: function() {
     FormView.$form.on('submit', FormView.handleSubmit);
@@ -11,17 +12,25 @@ var FormView = {
     // Stop the browser from submitting the form
     event.preventDefault();
 
-    //get value from input
-    //if value isn't blank
-      //pass in value to Parse.create
-      //call messsageView.render -> refresh everything
     var messageInput = FormView.$input.val();
-    //do stuff to message input
-      //fix me
-    //
+    var user = App.username;
+    var room = FormView.$room.val();
+    if (room = ''){
+      room = 'general';
+    }
+    var messageObj = {
+      username: user,
+      roomname: room,
+      text: messageInput,
+      createdAt: null
+    };
+
     if (messageInput !== '') {
-      Parse.create(messageInput);
-      messsageView.render();
+      Parse.create(messageObj);
+      App.startSpinner();
+      App.fetch(App.stopSpinner);
+      setTimeout(MessagesView.render, 3000);
+      FormView.$input.val('');
     }
     console.log('click!');
   },

@@ -23,7 +23,7 @@ var App = {
       console.log(data);
 
       // Chelsea notes: wrote below line to store retrieved data in messages
-      Messages.storage = Messages.storage.concat(data.results);
+      Messages.storage = data.results;
 
       callback();
     });
