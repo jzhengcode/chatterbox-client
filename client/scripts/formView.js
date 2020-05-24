@@ -15,9 +15,7 @@ var FormView = {
     var messageInput = FormView.$input.val();
     var user = App.username;
     var room = FormView.$room.val();
-    if (room = ''){
-      room = 'general';
-    }
+
     var messageObj = {
       username: user,
       roomname: room,
@@ -32,7 +30,6 @@ var FormView = {
       setTimeout(MessagesView.render, 3000);
       FormView.$input.val('');
     }
-    console.log('click!');
   },
 
   setStatus: function(active) {
