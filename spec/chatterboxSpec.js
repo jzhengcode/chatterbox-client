@@ -69,7 +69,8 @@ describe('chatterbox', function() {
       var message = {
         username: 'Mel Brooks',
         text: 'Never underestimate the power of the Schwartz!',
-        roomname: 'lobby'
+        roomname: 'lobby',
+        createdAt: null
       };
       MessagesView.renderMessage(message);
       expect($('#chats').children().length).to.equal(1);

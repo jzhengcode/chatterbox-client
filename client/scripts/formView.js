@@ -26,8 +26,8 @@ var FormView = {
     if (messageInput !== '') {
       Parse.create(messageObj);
       App.startSpinner();
-      App.fetch(App.stopSpinner);
-      setTimeout(MessagesView.render, 3000);
+      App.fetch(MessagesView.render);
+      App.stopSpinner();
       FormView.$input.val('');
     }
   },

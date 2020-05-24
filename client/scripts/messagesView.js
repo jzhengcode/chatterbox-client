@@ -9,8 +9,8 @@ var MessagesView = {
 
     MessagesView.$showMessages.on('click', function() {
       App.startSpinner();
-      App.fetch(App.stopSpinner);
-      setTimeout(MessagesView.render, 1000);
+      App.fetch(MessagesView.render);
+      App.stopSpinner();
     });
 
   },
@@ -39,6 +39,14 @@ var MessagesView = {
 
       let rendered = MessageView.render(message);
       MessagesView.$chats.append(rendered);
+    }
+    Friends.selectFriend(); //enable friend selection feature
+  },
+
+  renderMessage: function(message) {
+    if (message.hasOwnProperty('username') && message.hasOwnProperty('roomname') && message.hasOwnProperty('text') && message.hasOwnProperty('createdAt')) {
+      let rendered = MessageView.render(message);
+      MessagesView.$chats.prepend(rendered);
     }
   }
   //render friends messages differently - i.e. if message.username is contained in friends storage

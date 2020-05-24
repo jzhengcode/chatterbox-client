@@ -23,6 +23,7 @@ var RoomsView = {
     });
     Rooms.storage = uniqueRoomObjs;
     RoomsView.$select.empty();
+    RoomsView.$select.append('<option selected>All Rooms</option>');
     for (let roomName of Rooms.storage) {
       RoomsView.$select.append(RoomsView.render(roomName));
     }
@@ -54,9 +55,9 @@ var RoomsView = {
           if (messageInput !== '') {
             Parse.create(messageObj);
             App.startSpinner();
-            App.fetch(App.stopSpinner);
-            setTimeout(MessagesView.render, 2000);
+            App.fetch(MessagesView.render);
             setTimeout(RoomsView.initialize, 1000);
+            setTimeout(App.stopSpinner, 1000);
           }
 
         }

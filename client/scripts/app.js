@@ -16,9 +16,6 @@ var App = {
     setTimeout(MessagesView.initialize, 1000);
     FormView.initialize();
 
-
-
-
   },
 
   fetch: function(callback = ()=>{}) {
