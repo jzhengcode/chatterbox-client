@@ -24,11 +24,14 @@ var FormView = {
     };
 
     if (messageInput !== '') {
-      Parse.create(messageObj);
       App.startSpinner();
-      App.fetch(App.stopSpinner);
-      setTimeout(MessagesView.render, 3000);
+      Parse.create(messageObj, function() {
+        App.fetch(function() {
+          MessagesView.renderMessage(Messages.storage[0]);
+        });
+      });
       FormView.$input.val('');
+      App.stopSpinner();
     }
   },
 

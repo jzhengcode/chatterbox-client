@@ -6,10 +6,25 @@ var MessageView = {
   //Need to do escaping to avoid XSS attacks
   render: _.template(`
       <div class="chat">
-        <div class="username" id="<%-username%>"><a href="#" class="makeFriend"><%-username%></a></div>
+        <div class="username"><a href="#" class="makeFriend <%-username%>"><%-username%></a></div>
+        <div class="message-body"><%-text%></div>
+        <div class="timestamp"><%-createdAt%></div>
+        <div class="room-name"><%-roomname%></div>
+    `),
+
+  renderFriend: _.template(`
+      <div class="chat friend">
+        <div class="username"><a href="#" class="makeFriend <%-username%>"><%-username%></a></div>
+        <div class="message-body"><%-text%></div>
+        <div class="timestamp"><%-createdAt%></div>
+        <div class="room-name"><%-roomname%></div>
+    `),
+
+  renderSpecFriend: _.template(`
+      <div class="chat friend">
+        <div class="username"><a href="#" class="makeFriend <%-username%> specRunner"><%-username%></a></div>
         <div class="message-body"><%-text%></div>
         <div class="timestamp"><%-createdAt%></div>
         <div class="room-name"><%-roomname%></div>
     `)
-
 };

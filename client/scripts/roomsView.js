@@ -5,65 +5,38 @@ var RoomsView = {
 
   initialize: function() {
 
-    //to do: filter message view on the selected room --> do this messagesView render function
+    //Kick off event listener for switching rooms
     RoomsView.$select.on('change', function() {
       MessagesView.render();
     });
 
+    //Get unique room names from stored messages
     let roomNames = [];
     for (let messageObj of Messages.storage) {
       roomNames.push(messageObj.roomname);
     }
     let uniqueRooms = _.uniq(roomNames);
 
-    let uniqueRoomObjs = uniqueRooms.map(function(roomString) {
+    //Map unique room names to renderable objects and store
+    Rooms.storage = uniqueRooms.map(function(roomString) {
       let roomObj = {};
       roomObj.roomName = roomString;
       return roomObj;
     });
-    Rooms.storage = uniqueRoomObjs;
+
+    //Reset the room dropdown menu
     RoomsView.$select.empty();
+
+    //Add a default "All Rooms" option + each unique room name to menu
+    RoomsView.$select.append('<option selected>All Rooms</option>');
     for (let roomName of Rooms.storage) {
       RoomsView.$select.append(RoomsView.render(roomName));
     }
-    // set up event to look for click add room
-      // prompt for user input
-      // store the return value
-      // push stored value into storage
-      // call roomsView.initialize
 
+    //Kick off event listener for "add room" button
     RoomsView.$button.on('click', function() {
-      let newRoom = prompt('Please enter the room name');
-      let newRoomMessage = prompt('New message');
-
-      if (newRoom){
-
-        // if the user input already exists then do nothing
-        if (!_.contains(uniqueRooms, newRoom)){
-          var messageInput = newRoomMessage;
-          var user = App.username;
-          var room = newRoom;
-
-          var messageObj = {
-            username: user,
-            roomname: room,
-            text: messageInput,
-            createdAt: null
-          };
-
-          if (messageInput !== '') {
-            Parse.create(messageObj);
-            App.startSpinner();
-            App.fetch(App.stopSpinner);
-            setTimeout(MessagesView.render, 2000);
-            setTimeout(RoomsView.initialize, 1000);
-          }
-
-        }
-
-      }
+      Rooms.add(uniqueRooms);
     });
-
 
   },
 
