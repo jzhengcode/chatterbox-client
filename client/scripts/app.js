@@ -9,12 +9,13 @@ var App = {
 
     // Fetch initial batch of messages
     App.startSpinner();
-    App.fetch(App.stopSpinner);
+    App.fetch(MessagesView.initialize); //kicks off other initializations
+    App.stopSpinner();
 
     //Initialize views
-    setTimeout(RoomsView.initialize, 1000);
-    setTimeout(MessagesView.initialize, 1000);
-    FormView.initialize();
+    // setTimeout(RoomsView.initialize, 1000);
+    // setTimeout(MessagesView.initialize, 1000);
+    // setTimeout(FormView.initialize, 1000);
 
   },
 

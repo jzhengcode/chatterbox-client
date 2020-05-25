@@ -6,6 +6,8 @@ var MessagesView = {
 
   initialize: function() {
     MessagesView.render();
+    FormView.initialize();
+    RoomsView.initialize();
 
     MessagesView.$showMessages.on('click', function() {
       App.startSpinner();
