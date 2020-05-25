@@ -2,6 +2,7 @@ var RoomsView = {
 
   $button: $('#rooms button'),
   $select: $('#room-dropdown'),
+  listening: false,
 
   initialize: function() {
 
@@ -29,8 +30,8 @@ var RoomsView = {
     }
     RoomsView.$button.on('click', function() {
       Rooms.add(uniqueRooms);
-
     });
+    RoomsView.listening = true;
 
 
 

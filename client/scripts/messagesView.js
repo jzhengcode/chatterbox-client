@@ -45,14 +45,36 @@ var MessagesView = {
       }
       MessagesView.$chats.append($rendered);
     }
-    Friends.toggleStatus(); //enable friend selection feature
+    //friends
+    $('.makeFriend').each(function() {
+      $(this).on('click', function() {
+        Friends.toggleStatus($(this));
+      });
+    });
   },
 
   renderMessage: function(message) {
     if (message.hasOwnProperty('username') && message.hasOwnProperty('roomname') && message.hasOwnProperty('text') && message.hasOwnProperty('createdAt')) {
-      let rendered = MessageView.render(message);
-      MessagesView.$chats.prepend(rendered);
+      let $rendered = MessageView.render(message);
+      if (_.contains(Friends.storage, message.username)) {
+        $rendered = MessageView.renderFriend(message);
+      }
+      if (message.specRunner) {
+        $rendered = MessageView.renderSpecFriend(message);
+      }
+      MessagesView.$chats.prepend($rendered);
     }
+    //friends
+    $('.makeFriend').each(function() {
+      $(this).on('click', function() {
+        let runBySpec = false;
+        let classes = $(this)[0].classList;
+        if (_.contains(classes, 'specRunner')) {
+          runBySpec = true;
+        }
+        Friends.toggleStatus($(this), runBySpec);
+      });
+    });
   }
   //render friends messages differently - i.e. if message.username is contained in friends storage
     //inside for-loop above, if message.username is _.contained in Friends.storage

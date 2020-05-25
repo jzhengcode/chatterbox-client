@@ -93,9 +93,12 @@ describe('chatterbox', function() {
       MessagesView.renderMessage({
         username: 'Mel Brooks',
         text: 'I didn\'t get a harumph outa that guy.!',
-        roomname: 'lobby'
+        roomname: 'lobby',
+        createdAt: null,
+        specRunner: true
       });
-      $('#chats').find('.username').trigger('click');
+      console.log($('#chats').find('.makeFriend').first());
+      $('#chats').find('.makeFriend').first().trigger('click');
       expect(Friends.toggleStatus.called).to.be.true;
 
       Friends.toggleStatus.restore();
@@ -107,9 +110,9 @@ describe('chatterbox', function() {
       window.prompt = sinon.stub().returns('testroom');
 
       App.initialize();
+      RoomsView.initialize();
       $('#rooms').find('button').trigger('click');
       expect(Rooms.add.called).to.be.true;
-
       window.prompt = prompt;
       Rooms.add.restore();
     });
@@ -118,6 +121,7 @@ describe('chatterbox', function() {
       sinon.spy(Parse, 'create');
 
       App.initialize();
+      MessagesView.initialize();
       $('#message').val('Why so many Mel Brooks quotes?');
       $('form .submit').trigger('submit');
       expect(Parse.create.called).to.be.true;

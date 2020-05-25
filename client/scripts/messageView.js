@@ -18,5 +18,13 @@ var MessageView = {
         <div class="message-body"><%-text%></div>
         <div class="timestamp"><%-createdAt%></div>
         <div class="room-name"><%-roomname%></div>
+    `),
+
+  renderSpecFriend: _.template(`
+      <div class="chat friend">
+        <div class="username"><a href="#" class="makeFriend <%-username%> specRunner"><%-username%></a></div>
+        <div class="message-body"><%-text%></div>
+        <div class="timestamp"><%-createdAt%></div>
+        <div class="room-name"><%-roomname%></div>
     `)
 };
