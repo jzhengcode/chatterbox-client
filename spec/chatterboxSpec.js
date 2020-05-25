@@ -77,9 +77,8 @@ describe('chatterbox', function() {
     });
 
     it('should be able to add rooms to the DOM', function() {
-      Rooms.add([],'superLobby','spec message');
+      Rooms.add([], 'superLobby', 'spec message');
       let $roomMenu = $('#room-dropdown');
-      console.log($roomMenu);
       expect($('#room-dropdown').children().length).to.equal(1);
     });
 
@@ -95,9 +94,8 @@ describe('chatterbox', function() {
         text: 'I didn\'t get a harumph outa that guy.!',
         roomname: 'lobby',
         createdAt: null,
-        specRunner: true
+        specRunner: true /*used to bypass "friend added" alert, as test fails due to timeout*/
       });
-      console.log($('#chats').find('.makeFriend').first());
       $('#chats').find('.makeFriend').first().trigger('click');
       expect(Friends.toggleStatus.called).to.be.true;
 

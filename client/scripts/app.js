@@ -9,13 +9,8 @@ var App = {
 
     // Fetch initial batch of messages
     App.startSpinner();
-    App.fetch(MessagesView.initialize); //kicks off other initializations
+    App.fetch(MessagesView.initialize); //kicks off other initializations when complete
     App.stopSpinner();
-
-    //Initialize views
-    // setTimeout(RoomsView.initialize, 1000);
-    // setTimeout(MessagesView.initialize, 1000);
-    // setTimeout(FormView.initialize, 1000);
 
   },
 
@@ -25,7 +20,6 @@ var App = {
       console.log(data);
 
       Messages.storage = data.results;
-
 
       callback();
     });

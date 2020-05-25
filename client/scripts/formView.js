@@ -30,9 +30,6 @@ var FormView = {
           MessagesView.renderMessage(Messages.storage[0]);
         });
       });
-      // setTimeout(function() {
-      //   MessagesView.renderMessage(Messages.storage[0]);
-      // }, 1000);
       FormView.$input.val('');
       App.stopSpinner();
     }
