@@ -39,10 +39,13 @@ var MessagesView = {
         continue;
       }
 
-      let rendered = MessageView.render(message);
-      MessagesView.$chats.append(rendered);
+      let $rendered = MessageView.render(message);
+      if (_.contains(Friends.storage, message.username)) {
+        $rendered = MessageView.renderFriend(message);
+      }
+      MessagesView.$chats.append($rendered);
     }
-    Friends.selectFriend(); //enable friend selection feature
+    Friends.toggleStatus(); //enable friend selection feature
   },
 
   renderMessage: function(message) {

@@ -5,7 +5,7 @@ var Friends = {
   //set up event listener for a click on any username
     //on click, add username to Friends storage
     //have a popup that says "added to friends" or something
-  selectFriend: function() {
+  toggleStatus: function() {
     $('.makeFriend').each(function() {
       $(this).on('click', function() {
         //get id of element that triggered the event, which should be username
